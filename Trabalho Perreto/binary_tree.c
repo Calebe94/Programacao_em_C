@@ -13,8 +13,7 @@ treeNode* Find_Max(treeNode *node){
 }
 
 treeNode * add(treeNode *node,int data){
-        if(node==NULL)
-        {
+        if(node==NULL){
                 treeNode *temp;
                 temp = (treeNode *)malloc(sizeof(treeNode));
                 temp->data = data;
@@ -28,10 +27,9 @@ treeNode * add(treeNode *node,int data){
 
 }
 
-treeNode * rm(treeNode *node, int data)
-{
+treeNode * rm(treeNode *node, int data){
         treeNode *temp;
-        if(node==NULL)					printf("Element Not Found");
+        if(node==NULL)					printf("Elemento %d Não encontrado para Remoção!\n",data);
         else if(data < node->data)		node->left = rm(node->left, data);
         else if(data > node->data)		node->right = rm(node->right, data);
         else
@@ -50,6 +48,7 @@ treeNode * rm(treeNode *node, int data)
                         free(temp); 
                 }
         }
+		//printf("Elemento %d Removido!\n",data);
         return node;
 
 }

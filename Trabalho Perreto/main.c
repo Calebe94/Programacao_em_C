@@ -43,13 +43,11 @@ treeNode *command(treeNode *root,char *string){
 	if(strcmp(command,"add")==0){
 		int elemento = strToNum(string);
         root = add(root,elemento);
-		printf("Elemento %d Adicionado\n",elemento);
 		return root;
 	}
 	else if(strcmp(command,"rm")==0){
 		int elemento = strToNum(string);
         root = rm(root,elemento);
-		printf("Elemento %d Removido\n",elemento);
 		return root;
 	}
 	else if(strcmp(command,"find")==0){

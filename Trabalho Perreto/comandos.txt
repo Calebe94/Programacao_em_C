@@ -6,22 +6,22 @@ add -3
 add -7
 add -19
 print -in-order
-add 21
-print -in-order
-add 20
-add 13
-add 12
-find 12
-find 15
 find 18
-find 10
+find 15
 find 19
-find 21
 find -5
+find -3
 find -7
-find -9
+find -19
+find 10
+find 9
+find 12
+find 21
 print -in-order
-print -post-order
-print -pre-order
+rm -19
+rm -7
+rm -3
+rm 18
+print -in-order
 end
 
