@@ -1,17 +1,13 @@
 add 18
 add 15
 add 19
-print -pre-order
-add -5
-print -post-order
+print -in-order
 add 21
 find 18
-find 15
-find -5
 print -in-order
 add 20
 add 13
 add 12
-print -post-order
+print -in-order
 end
 

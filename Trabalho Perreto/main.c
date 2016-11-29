@@ -57,9 +57,10 @@ treeNode *command(treeNode *root,char *string){
         treeNode *temp = (treeNode*)malloc(sizeof(root)*size(root));
 		memcpy(temp,root,sizeof(root)*size(root));
         temp = find(temp,elemento);
-		if(temp != NULL)		printf("Elemento %d Encontrado!\n",temp->data);
+		if(temp != NULL)	printf("Elemento %d Encontrado!\n",temp->data);
 		else printf("Elemento %d não Encontrado!\n",elemento);
 		free(temp);
+		temp = NULL;
 		return root;
 	}
 	else if(strcmp(command,"print")==0){
