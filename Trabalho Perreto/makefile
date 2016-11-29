@@ -1,5 +1,5 @@
-all: AVL.c
-	gcc AVL.c Arvore_bin.c -o tree
+all: main.c
+	gcc main.c binary_tree.c -o tree
 tree:	Arvore_bin.c
 	gcc Arvore_bin.c
 rm:	tree

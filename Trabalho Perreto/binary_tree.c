@@ -17,8 +17,8 @@ treeNode * add(treeNode *node,int data){
         {
                 treeNode *temp;
                 temp = (treeNode *)malloc(sizeof(treeNode));
-                temp -> data = data;
-                temp -> left = temp -> right = NULL;
+                temp->data = data;
+                temp->left = temp->right = NULL;
                 return temp;
         }
 
@@ -54,32 +54,28 @@ treeNode * rm(treeNode *node, int data)
 
 }
 
-treeNode * find(treeNode *node, int data)
-{
+treeNode * find(treeNode *node, int data){
         if(node==NULL)				return NULL;
-        if(data > node->data)		return find(node->right,data);
-        else if(data < node->data)	return find(node->left,data);
+        if(data > node->data)		node->right = find(node->right,data);
+        else if(data < node->data)	node->left  = find(node->left,data);
         else		                return node;
 }
 
-void in_order(treeNode *node)
-{
+void in_order(treeNode *node){
         if(node==NULL)	return;
         in_order(node->left);
         printf("%d ",node->data);
         in_order(node->right);
 }
 
-void pre_order(treeNode *node)
-{
+void pre_order(treeNode *node){
         if(node==NULL) return;
         printf("%d ",node->data);
         pre_order(node->left);
         pre_order(node->right);
 }
 
-void post_order(treeNode *node)
-{
+void post_order(treeNode *node){
         if(node==NULL) return;
         post_order(node->left);
         post_order(node->right);
