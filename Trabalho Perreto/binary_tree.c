@@ -54,14 +54,14 @@ treeNode * rm(treeNode *node, int data)
 
 }
 
-treeNode * find(treeNode *node, int data){
-        if(node==NULL)				return NULL;
+int find(treeNode *node, int data){
+        if(node==NULL)				return -1;
 		while(node!=NULL){
 			if (data < node->data)		node = node->left;
 			else if (data > node->data)	node = node->right;
-         	else	return node;
+         	else	return node->data;
    		}
-		return NULL;
+		return -1;
 }
 
 void in_order(treeNode *node){

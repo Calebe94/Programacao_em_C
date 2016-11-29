@@ -12,7 +12,7 @@ treeNode* Find_Min(treeNode *node);
 treeNode* Find_Max(treeNode *node);
 treeNode * add(treeNode *node,int data);
 treeNode * rm(treeNode *node, int data);
-treeNode * find(treeNode *node, int data);
+int find(treeNode *node, int data);
 void in_order(treeNode *toPrint);
 void pre_order(treeNode *toPrint);
 void post_order(treeNode *toPrint);

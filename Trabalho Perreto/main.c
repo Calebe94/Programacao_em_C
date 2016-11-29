@@ -56,8 +56,7 @@ treeNode *command(treeNode *root,char *string){
 		int elemento = strToNum(string);
         treeNode *temp = (treeNode*)malloc(sizeof(root)*size(root));
 		memcpy(temp,root,sizeof(root)*size(root));
-        temp = find(temp,elemento);
-		if(temp != NULL)	printf("Elemento %d Encontrado!\n",temp->data);
+        if(find(temp,elemento) == elemento)	printf("Elemento %d Encontrado!\n",elemento);
 		else printf("Elemento %d não Encontrado!\n",elemento);
 		free(temp);
 		temp = NULL;
@@ -109,7 +108,7 @@ int main(int argc,char *argv[]){
 		printf("Sem Argumentos da Linha de Comando!\n");
 		return -1;
 	}
-	char caminho_arquivo[30],*line = NULL,*string= NULL;
+	char caminho_arquivo[30],*line = NULL,*string = NULL;
 	strcpy(caminho_arquivo,argv[1]);
 	FILE *arquivo = fopen(caminho_arquivo,"r+");
 	if(arquivo == NULL){
