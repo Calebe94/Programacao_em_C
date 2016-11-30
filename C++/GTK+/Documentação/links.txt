@@ -1,0 +1,4 @@
+GTK Documentation:
+	https://www.gtk.org/documentation.php
+Awesome Tutorial(eBook):
+	http://zetcode.com/gui/gtk2/

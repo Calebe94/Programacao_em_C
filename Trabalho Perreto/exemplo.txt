@@ -1,0 +1,35 @@
+add 10
+add 9
+add 8 
+add 5
+add 4
+print -pre-order
+rm 8
+print -pre-order
+find 8
+find 10
+find 9
+find 4
+add 7
+find 7
+add 6
+find 6
+print -post-order
+balance tree
+print -pre-order
+find 4
+end
+
+Saída esperada
+10 9 8 5 4
+10 9 5 4
+8 não encontrado
+10 - nó raiz
+9 - 1 nó(s) à esquerda
+4 - 3 nó(s) à esquerda
+7 - 2 nó(s) à esquerda 1 nó(s) à direita
+6 - 2 nó(s) à esquerda 1 nó(s) à direita 1 nó(s) à esquerda
+4 6 7 5 9 10
+7 5 4 6 10 9
+4 - 2 nó(s) à esquerda
+

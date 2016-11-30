@@ -1,8 +1,7 @@
 #include<stdlib.h>
 #include<stdio.h>
  
-typedef struct node
-{
+typedef struct node{
     int data;
     struct node *left,*right;
     int ht;

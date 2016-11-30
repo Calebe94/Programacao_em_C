@@ -2,7 +2,10 @@
 #include<string.h>
 #include<ctype.h>
 #include<stdlib.h>
-#include"binary_tree.h"
+//#include"binary_tree.h"
+#include"Balance_AVL.h"
+
+treeNode *avl = NULL, *binary = NULL;
 int size(treeNode *node){
     if (node)	return 1 + size(node->left) + size(node->right);
     else	return 0;
@@ -43,18 +46,32 @@ treeNode *command(treeNode *root,char *string){
 	if(strcmp(command,"add")==0){
 		int elemento = strToNum(string);
         root = add(root,elemento);
+		avl = add_AVL(avl, elemento);
+		binary = root;
 		return root;
 	}
 	else if(strcmp(command,"rm")==0){
 		int elemento = strToNum(string);
         root = rm(root,elemento);
+		avl  = rm_AVL(avl,elemento);
+		binary = root;
 		return root;
 	}
 	else if(strcmp(command,"find")==0){
 		int elemento = strToNum(string);
         treeNode *temp = (treeNode*)malloc(sizeof(root)*size(root));
 		memcpy(temp,root,sizeof(root)*size(root));
-        if(find(temp,elemento) == elemento)	printf("Elemento %d Encontrado!\n",elemento);
+		info information = find(temp,elemento);
+        if(information.element == elemento){
+			printf("%d",information.element);
+			if(information.index == 0)	printf(" - Nó Raiz\n");
+			else{
+				for(unsigned int count = 1; count < information.index+1; count ++){
+					printf(" %s",information.data[count]);			
+				}
+				printf("\n");
+			}
+		}
 		else printf("Elemento %d não Encontrado!\n",elemento);
 		free(temp);
 		temp = NULL;
@@ -92,6 +109,13 @@ treeNode *command(treeNode *root,char *string){
 	}
 	else if(strcmp(command,"balance")==0){
 		printf("Deu BALANCE:%s\n",string);
+		/*treeNode *balance;
+		balance = (treeNode*)malloc(sizeof(root)*size(root));
+		memcpy(balance,root,sizeof(root)*size(root));
+		avl_balance( balance );
+		free(balance);
+		balance = NULL;*/
+		root = avl;
 		return root;
 	}
 	else if(strcmp(command,"end")==0 || strcmp(command,"end") == 10){
@@ -113,7 +137,7 @@ int main(int argc,char *argv[]){
 		printf("Não pode Abrir o Arquivo!\n");
 		return -1;
 	}
-
+	// Cria a Árvore
     treeNode *root = NULL;
 
 	size_t len = 0;

@@ -53,14 +53,39 @@ treeNode * rm(treeNode *node, int data){
 
 }
 
-int find(treeNode *node, int data){
-        if(node==NULL)				return -1;
+info find(treeNode *node, int data){
+		info information;
+		information.index = 0;
+		information.node_left = 0;
+		information.node_right = 0;
+		int call_left=0,call_right=0;
+        if(node==NULL)				return;
 		while(node!=NULL){
-			if (data < node->data)		node = node->left;
-			else if (data > node->data)	node = node->right;
-         	else	return node->data;
+			if (data < node->data){
+				if(call_left == 0){
+					call_left = 1; call_right = 0;
+					information.index++;
+				}
+				snprintf(information.data[information.index],30,"- %d nó(s) à esquerda ",information.node_left+1);
+				node = node->left;
+				information.node_left++;
+			}	
+			else if (data > node->data){
+				if(call_right == 0){
+					call_left = 0; call_right = 1;
+					information.index++;
+				}
+				snprintf(information.data[information.index],30,"- %d nó(s) à direita ",information.node_right+1);
+				information.node_left = 0;
+				node = node->right;
+				information.node_right++;
+			}
+         	else{
+				information.element = node->data;
+				return information;
+			}
    		}
-		return -1;
+		return ;
 }
 
 void in_order(treeNode *node){
