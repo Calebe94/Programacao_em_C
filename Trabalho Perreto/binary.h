@@ -1,3 +1,6 @@
+#ifndef __BINARY_H__
+#define __BINARY_H__
+#endif
 #include<stdio.h>
 #include<stdlib.h>
 

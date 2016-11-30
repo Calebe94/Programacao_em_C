@@ -2,10 +2,12 @@
 #include<string.h>
 #include<ctype.h>
 #include<stdlib.h>
-//#include"binary_tree.h"
-#include"Balance_AVL.h"
+/*Inclue a biblioteca da Árvore Binária 
+		e da Árvore AVL*/
+#include"avl.h" 
 
 treeNode *avl = NULL, *binary = NULL;
+
 int size(treeNode *node){
     if (node)	return 1 + size(node->left) + size(node->right);
     else	return 0;
@@ -108,15 +110,10 @@ treeNode *command(treeNode *root,char *string){
 		else return root;
 	}
 	else if(strcmp(command,"balance")==0){
-		printf("Deu BALANCE:%s\n",string);
-		/*treeNode *balance;
-		balance = (treeNode*)malloc(sizeof(root)*size(root));
-		memcpy(balance,root,sizeof(root)*size(root));
-		avl_balance( balance );
-		free(balance);
-		balance = NULL;*/
-		root = avl;
-		return root;
+		if(strcmp(string,"tree")==0){
+			root = avl;
+			return root;
+		}else return root;
 	}
 	else if(strcmp(command,"end")==0 || strcmp(command,"end") == 10){
 		printf("Deu END!\n");
@@ -137,15 +134,15 @@ int main(int argc,char *argv[]){
 		printf("Não pode Abrir o Arquivo!\n");
 		return -1;
 	}
-	// Cria a Árvore
+
     treeNode *root = NULL;
 
 	size_t len = 0;
 	int read;
 	while ((read = getline(&line, &len, arquivo)) != -1) {
-		if(line == NULL)	return 0;
+		if(line == NULL)	return -1;
 		root = command(root,line);
-		if(root == NULL)	return -1;
-    }
+		if(root == NULL)	return 0;
+ 	}
 	fclose(arquivo)	;
 }

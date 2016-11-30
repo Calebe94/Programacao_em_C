@@ -1,4 +1,4 @@
-#include"binary_tree.h"
+#include"binary.h"
 
 treeNode* Find_Min(treeNode *node){
         if(node==NULL)	return NULL;
@@ -59,7 +59,7 @@ info find(treeNode *node, int data){
 		information.node_left = 0;
 		information.node_right = 0;
 		int call_left=0,call_right=0;
-        if(node==NULL)				return;
+        if(node==NULL)				return information;
 		while(node!=NULL){
 			if (data < node->data){
 				if(call_left == 0){
@@ -85,7 +85,7 @@ info find(treeNode *node, int data){
 				return information;
 			}
    		}
-		return ;
+		return information;
 }
 
 void in_order(treeNode *node){
