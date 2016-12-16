@@ -37,6 +37,14 @@ Função responsável pela conversão da string lida do arquivo em 2 comandos(1 
 				print -pre-order -> print(comando) , -pre-order(Subcomando)
 Retorno:	Se for encontrado comando e subcomando, retorna 1, se não, retorna 0
 	(*Fazer com que retorne -1 ao encontrar erro)		*/
+treeNode *destroi(treeNode *node){
+	while(node!=NULL){
+		destroi(node->left);
+		destroi(node->right);
+		free(node);
+	}
+	node = NULL;
+}
 treeNode *command(treeNode *root,char *string){
 	char *command ;//= strsep(&string," ");
 	if(string == NULL)	return root; //verificação na chamada de Função
@@ -112,6 +120,7 @@ treeNode *command(treeNode *root,char *string){
 	else if(strcmp(command,"balance")==0){
 		if(strcmp(string,"tree")==0){
 			root = avl;
+			//*avl = *binary;
 			return root;
 		}else return root;
 	}

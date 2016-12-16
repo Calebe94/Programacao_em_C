@@ -3,8 +3,6 @@
 #include "avl.h"
 //#include "binary_tree.h"
 
-int max(int a, int b);
-
 int height(treeNode *N)
 {
     if (N == NULL)
@@ -12,7 +10,7 @@ int height(treeNode *N)
     return N->height;
 }
  
-int max(int a, int b)
+int maximum(int a, int b)
 {
     return (a > b)? a : b;
 }
@@ -27,31 +25,31 @@ treeNode* newNode(int data)
     return(node);
 }
 
-treeNode *rightRotate(treeNode *y)
+treeNode *rightRotate(treeNode *nR_right)
 {
-    treeNode *x = y->left;
-    treeNode *subTree = x->right;
+    treeNode *nR_left = nR_right->left;
+    treeNode *subTree = nR_left->right;
  
-    x->right = y;
-    y->left = subTree;
-    y->height = max(height(y->left), height(y->right))+1;
-    x->height = max(height(x->left), height(x->right))+1;
+    nR_left->right = nR_right;
+    nR_right->left = subTree;
+    nR_right->height = maximum(height(nR_right->left), height(nR_right->right))+1;
+    nR_left->height = maximum(height(nR_left->left), height(nR_left->right))+1;
  
-    return x;
+    return nR_left;
 }
 
-treeNode *leftRotate(treeNode *x)
+treeNode *leftRotate(treeNode *nR_left)
 {
-    treeNode *y = x->right;
-    treeNode *subTree = y->left;
+    treeNode *nR_right = nR_left->right;
+    treeNode *subTree = nR_right->left;
  
-    y->left = x;
-    x->right = subTree;
+    nR_right->left = nR_left;
+    nR_left->right = subTree;
  
-    x->height = max(height(x->left), height(x->right))+1;
-    y->height = max(height(y->left), height(y->right))+1;
+    nR_left->height = maximum(height(nR_left->left), height(nR_left->right))+1;
+    nR_right->height = maximum(height(nR_right->left), height(nR_right->right))+1;
 
-    return y;
+    return nR_right;
 }
  
 int getBalance(treeNode *N)
@@ -74,7 +72,7 @@ treeNode* add_AVL(treeNode* node, int data)
     else 
         return node;
  
-    node->height = 1 + max(height(node->left),
+    node->height = 1 + maximum(height(node->left),
                            height(node->right));
  
     int balance = getBalance(node);
@@ -151,13 +149,13 @@ treeNode* rm_AVL(treeNode* root, int data)
     if (root == NULL)
       return root;
 
-    root->height = 1 + max(height(root->left), height(root->right));
+    root->height = 1 + maximum(height(root->left), height(root->right));
  
     int balance = getBalance(root);
  
     if (balance > 1 && getBalance(root->left) >= 0)
         return rightRotate(root);
- 
+ 							
     if (balance > 1 && getBalance(root->left) < 0)
     {
         root->left =  leftRotate(root->left);

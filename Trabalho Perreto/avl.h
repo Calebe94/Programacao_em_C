@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "binary.h"
-int max(int a, int b);
+int maximum(int a, int b);
 int height(treeNode *N);
 treeNode* newNode(int key);
 treeNode *rightRotate(treeNode *y);
