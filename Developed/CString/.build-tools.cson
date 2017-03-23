@@ -1,0 +1,32 @@
+providers: [
+  {
+    key: "bt"
+    config:
+      commands: [
+        {
+          project: "/home/calebe/Projetos/Programacao_em_C/Developed/CString"
+          source: "/home/calebe/Projetos/Programacao_em_C/Developed/CString/.build-tools.cson"
+          name: "Compile"
+          command: "gcc getString.c -o teste"
+          wd: "."
+          env: {}
+          modifier: {}
+          environment:
+            name: "child_process"
+            config:
+              stdoe: "both"
+          stdout:
+            pipeline: []
+          stderr:
+            pipeline: []
+          output:
+            console:
+              close_success: true
+              queue_in_buffer: true
+              colors: false
+              stdin: false
+          version: 2
+        }
+      ]
+  }
+]
