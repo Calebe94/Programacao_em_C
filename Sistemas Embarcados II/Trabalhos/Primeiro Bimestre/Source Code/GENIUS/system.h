@@ -9,3 +9,5 @@ void PortE(void);
 void SysTick_Init(void);
 
 void delay(unsigned long delay_ms);
+
+void another_delay(unsigned int delay);

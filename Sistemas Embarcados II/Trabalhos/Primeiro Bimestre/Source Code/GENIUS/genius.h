@@ -2,6 +2,15 @@
 #include"tm4c123gh6pm.h"
 #include"pins.h"
 
+typedef struct{
+    uint8_t queue[100];
+    uint8_t index;
+    uint8_t iVerify;
+    uint8_t start_control;
+    uint8_t debug;
+    uint8_t led_to_blink;
+}GENIUS;
+
 //extern unsigned int queue[100]={};
 //extern unsigned int index=0,iVerify=0,start_control=0,debug=0;
 //extern unsigned int led_to_blink=0;

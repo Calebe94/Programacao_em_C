@@ -7,21 +7,21 @@
  * PortB- DIR = 0x1
  * Nesse Registrador sera utilizado as funcoes alternativas PWM e Analog.
  *
- * PB0 - PWM - BUZZER(Out)
- * PB1 - GPIO - BT3(In)
- * PB2 - GPIO - BT4(In)
- * PB4 - A10 - RANDOM(In)
+ * PB0 - GPIO - LED1(Out)
+ * PB1 - GPIO - LED2(Out)
+ * PB2 - GPIO - LED3(Out)
+ * PB3 - GPIO - LED4(Out)
+ * PB4 - PWM  - buzzer(Out)
  *------------------------
  * PortE- DIR = 0xF
  * Nesse Registrador pode ser desligado as funcoes alternativas.
- * PE0 - GPIO - LED1(Out)
- * PE1 - GPIO - LED2(Out)
- * PE2 - GPIO - LED3(Out)
- * PE3 - GPIO - LED4(Out)
- * PE4 - GPIO - BT1(In)
- * PE5 - GPIO - BT2(In)
- *
- *3F
+ * PE0 - GPIO - BT1(In)
+ * PE1 - GPIO - BT2(In)
+ * PE2 - GPIO - BT3(In)
+ * PE3 - GPIO - BT4(In)
+ * PE4 - ALin - Random(In)
+ * PE5 - GPIO - Start(In)
+ 
 The following are defines for the bit fields in the SYSCTL_RCGC2 register.
 #define SYSCTL_RCGC2_GPIOE      0x00000010  // Port E Clock Gating Control
 #define SYSCTL_RCGC2_GPIOB      0x00000002  // Port B Clock Gating Control

@@ -12,6 +12,7 @@ ORDERED_OBJS += \
 "./genius.obj" \
 "./geniusAPI.obj" \
 "./main.obj" \
+"./pwm.obj" \
 "./system.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
 "../tm4c123gh6pm.cmd" \
@@ -156,8 +157,8 @@ GENIUS.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "adc.obj" "genius.obj" "geniusAPI.obj" "main.obj" "system.obj" "tm4c123gh6pm_startup_ccs.obj" 
-	-$(RM) "adc.d" "genius.d" "geniusAPI.d" "main.d" "system.d" "tm4c123gh6pm_startup_ccs.d" 
+	-$(RM) "adc.obj" "genius.obj" "geniusAPI.obj" "main.obj" "pwm.obj" "system.obj" "tm4c123gh6pm_startup_ccs.obj" 
+	-$(RM) "adc.d" "genius.d" "geniusAPI.d" "main.d" "pwm.d" "system.d" "tm4c123gh6pm_startup_ccs.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

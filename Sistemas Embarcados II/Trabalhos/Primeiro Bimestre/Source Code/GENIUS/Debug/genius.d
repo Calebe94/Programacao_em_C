@@ -18,6 +18,7 @@ genius.obj: ../pins.h
 genius.obj: ../adc.h
 genius.obj: ../system.h
 genius.obj: ../pins.h
+genius.obj: ../pwm.h
 
 ../genius.c: 
 ../geniusAPI.h: 
@@ -37,3 +38,4 @@ genius.obj: ../pins.h
 ../adc.h: 
 ../system.h: 
 ../pins.h: 
+../pwm.h: 

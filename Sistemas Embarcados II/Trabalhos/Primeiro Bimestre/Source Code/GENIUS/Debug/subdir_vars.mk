@@ -11,6 +11,7 @@ C_SRCS += \
 ../genius.c \
 ../geniusAPI.c \
 ../main.c \
+../pwm.c \
 ../system.c \
 ../tm4c123gh6pm_startup_ccs.c 
 
@@ -19,6 +20,7 @@ C_DEPS += \
 ./genius.d \
 ./geniusAPI.d \
 ./main.d \
+./pwm.d \
 ./system.d \
 ./tm4c123gh6pm_startup_ccs.d 
 
@@ -27,6 +29,7 @@ OBJS += \
 ./genius.obj \
 ./geniusAPI.obj \
 ./main.obj \
+./pwm.obj \
 ./system.obj \
 ./tm4c123gh6pm_startup_ccs.obj 
 
@@ -35,6 +38,7 @@ OBJS__QUOTED += \
 "genius.obj" \
 "geniusAPI.obj" \
 "main.obj" \
+"pwm.obj" \
 "system.obj" \
 "tm4c123gh6pm_startup_ccs.obj" 
 
@@ -43,6 +47,7 @@ C_DEPS__QUOTED += \
 "genius.d" \
 "geniusAPI.d" \
 "main.d" \
+"pwm.d" \
 "system.d" \
 "tm4c123gh6pm_startup_ccs.d" 
 
@@ -51,6 +56,7 @@ C_SRCS__QUOTED += \
 "../genius.c" \
 "../geniusAPI.c" \
 "../main.c" \
+"../pwm.c" \
 "../system.c" \
 "../tm4c123gh6pm_startup_ccs.c" 
 
