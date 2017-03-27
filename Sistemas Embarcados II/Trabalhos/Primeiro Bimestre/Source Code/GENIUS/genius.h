@@ -7,8 +7,8 @@ typedef struct{
     uint8_t index;
     uint8_t iVerify;
     uint8_t start_control;
-    uint8_t debug;
-    uint8_t led_to_blink;
+    //uint8_t debug;
+    //uint8_t led_to_blink;
 }GENIUS;
 
 //extern unsigned int queue[100]={};
@@ -35,7 +35,7 @@ void loop(void);
  * e esperará até que qualquer um dos quatros botões sejam pressionados,
  * isso ocasionará a saída da função e consequentemente iniciará o jogo.
  ***************************************************************************/
-unsigned int wait_to_start(void);
+unsigned int wait_to_start(GENIUS *this);
 
 /***************************************************************************
  * game_init();
@@ -47,14 +47,18 @@ unsigned int wait_to_start(void);
  * verifica se o botão botão pressionado corresponde a fila.
  * executa a função verify().
  ***************************************************************************/
-void game_init(void);
+void game_init(GENIUS *this);
 
 /***************************************************************************
  * verify();
  * Verifica se o botão pressionado corresponde a posição da fila.
  * se não, volta para função wait_to_start().
  ***************************************************************************/
-void verify(void);
+void verify(GENIUS *this);
 
-void execute(void);
-void demonstration(void);
+void execute(GENIUS *this);
+
+/*Play music tones*/
+void Tones(uint8_t which);
+
+void You_Lose(GENIUS this,uint8_t option);
