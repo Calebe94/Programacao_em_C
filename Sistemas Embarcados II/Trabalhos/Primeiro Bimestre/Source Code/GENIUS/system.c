@@ -1,9 +1,12 @@
 #include"system.h"
 
-#define XTAL 16000000
-#define XTAL_ST 16000
-#define ST_MAX_VALUE 0x00FFFFFF
+/*
+ * Complexidade de Algorítmo total do arquivo system.c = f(n) = 3n³ + 7n + 51
+ * */
 
+/*
+ * Complexidade de Algorítmo PortB(): f(n) = 12
+ * */
 void PortB(void){
     SYSCTL_RCGC2_R |= SYSCTL_RCGC2_GPIOB;
     while((SYSCTL_RCGC2_R&SYSCTL_RCGC2_GPIOB)!=SYSCTL_RCGC2_GPIOB);
@@ -12,6 +15,10 @@ void PortB(void){
     GPIO_PORTB_AFSEL_R&=~0xF;
     GPIO_PORTB_DEN_R |=0xF;
 }
+
+/*
+ * Complexidade de Algorítmo PortE(): f(n) = 10
+ * */
 void PortE(void){
     SYSCTL_RCGC2_R |= SYSCTL_RCGC2_GPIOE;
     while((SYSCTL_RCGC2_R&SYSCTL_RCGC2_GPIOE)!=SYSCTL_RCGC2_GPIOE);
@@ -19,13 +26,21 @@ void PortE(void){
     GPIO_PORTE_DIR_R|=0x00;
     GPIO_PORTE_DEN_R|=0xF;
 }
+
+/*
+ * Complexidade de Algorítmo SysTick_Init(): f(n) = 4
+ * */
 void SysTick_Init(void){
     NVIC_ST_CTRL_R = 0;
     NVIC_ST_RELOAD_R = 0x00FFFFFF;
     NVIC_ST_CURRENT_R = 0;
     NVIC_ST_CTRL_R = 0x00000005;
 }
-void delay(unsigned long delay_ms){
+
+/*
+ * Complexidade de Algorítmo delay_SysTick(): f(n) = 5n + 13
+ * */
+void delay_SysTick(unsigned long delay_ms){
     unsigned long Now=0;
     unsigned long Last=0;
     unsigned long Elapsed=0;
@@ -40,7 +55,11 @@ void delay(unsigned long delay_ms){
         }
     }
 }
-void another_delay(unsigned int delay){
+
+/*
+ * Complexidade de Algorítmo delay(): f(n) = 3n² + 2n + 12
+ * */
+void delay(unsigned int delay){
     register unsigned int i;
     SYSCTL_RCGCTIMER_R |= 1;
 

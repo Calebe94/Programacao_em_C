@@ -8,7 +8,6 @@ CMD_SRCS += \
 
 C_SRCS += \
 ../adc.c \
-../genius.c \
 ../geniusAPI.c \
 ../main.c \
 ../pwm.c \
@@ -17,7 +16,6 @@ C_SRCS += \
 
 C_DEPS += \
 ./adc.d \
-./genius.d \
 ./geniusAPI.d \
 ./main.d \
 ./pwm.d \
@@ -26,7 +24,6 @@ C_DEPS += \
 
 OBJS += \
 ./adc.obj \
-./genius.obj \
 ./geniusAPI.obj \
 ./main.obj \
 ./pwm.obj \
@@ -35,7 +32,6 @@ OBJS += \
 
 OBJS__QUOTED += \
 "adc.obj" \
-"genius.obj" \
 "geniusAPI.obj" \
 "main.obj" \
 "pwm.obj" \
@@ -44,7 +40,6 @@ OBJS__QUOTED += \
 
 C_DEPS__QUOTED += \
 "adc.d" \
-"genius.d" \
 "geniusAPI.d" \
 "main.d" \
 "pwm.d" \
@@ -53,7 +48,6 @@ C_DEPS__QUOTED += \
 
 C_SRCS__QUOTED += \
 "../adc.c" \
-"../genius.c" \
 "../geniusAPI.c" \
 "../main.c" \
 "../pwm.c" \

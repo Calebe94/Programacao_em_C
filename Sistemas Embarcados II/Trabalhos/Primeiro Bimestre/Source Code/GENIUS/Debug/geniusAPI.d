@@ -8,13 +8,13 @@ geniusAPI.obj: /opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdarg
 geniusAPI.obj: /opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdlib.h
 geniusAPI.obj: /opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/time.h
 geniusAPI.obj: /opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/abi_prefix.h
-geniusAPI.obj: ../genius.h
+geniusAPI.obj: ../system.h
 geniusAPI.obj: /opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdint.h
 geniusAPI.obj: ../tm4c123gh6pm.h
 geniusAPI.obj: ../pins.h
-geniusAPI.obj: ../system.h
 geniusAPI.obj: ../pins.h
-geniusAPI.obj: ../pins.h
+geniusAPI.obj: ../adc.h
+geniusAPI.obj: ../pwm.h
 
 ../geniusAPI.c: 
 ../geniusAPI.h: 
@@ -24,10 +24,10 @@ geniusAPI.obj: ../pins.h
 /opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdlib.h: 
 /opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/time.h: 
 /opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/abi_prefix.h: 
-../genius.h: 
+../system.h: 
 /opt/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.0.LTS/include/stdint.h: 
 ../tm4c123gh6pm.h: 
 ../pins.h: 
-../system.h: 
 ../pins.h: 
-../pins.h: 
+../adc.h: 
+../pwm.h: 

@@ -1,1 +1,1 @@
-"./adc.obj" "./genius.obj" "./geniusAPI.obj" "./main.obj" "./pwm.obj" "./system.obj" "./tm4c123gh6pm_startup_ccs.obj" "../tm4c123gh6pm.cmd" -llibc.a 
+"./adc.obj" "./geniusAPI.obj" "./main.obj" "./pwm.obj" "./system.obj" "./tm4c123gh6pm_startup_ccs.obj" "../tm4c123gh6pm.cmd" -llibc.a 

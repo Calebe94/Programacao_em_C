@@ -3,13 +3,7 @@
 #include"system.h"
 #include"pwm.h"
 
-#define DEBOUNCE 10
-
-/*I'll add one more button just to look like the simon says'pocket version*/
-
-//unsigned int queue[100]={};
-//unsigned int index=0,iVerify=0,start_control=0,debug=0;
-//unsigned int led_t0o_blink=0;
+//#define DEBOUNCE 10
 
 GENIUS game;
 
@@ -17,7 +11,7 @@ void setup(){
     PortB();
     PortE();
     SysTick_Init();
-    ADC0_Init();
+    ADC0_Init(); // PB5
     feed_random(ADC0_Read());
     PWM_Init();
 }
@@ -35,11 +29,10 @@ void loop(){
     }
 
 }
-unsigned int togled = 0;
-unsigned int wait_to_start(GENIUS *this){
 
-    //uint8_t led_to_blink = this->led_to_blink;
-    uint8_t led_to_blink = 0;
+unsigned int wait_to_start(GENIUS *this){
+    volatile uint8_t togled = 0;
+    volatile uint8_t led_to_blink = 0;
 
     unsigned long Start=NVIC_ST_CURRENT_R;
 
@@ -83,91 +76,54 @@ void game_init(GENIUS *this){
     uint8_t index = this->index;
     for(count = 0 ; count < index; count++ )    this->queue[count] = 0;
     this->index = 0;
+    this->level = 0;
+    this->delay = 500;
 }
+
 void verify(GENIUS *this){
     volatile uint8_t iVerify = this->iVerify;
-    volatile uint8_t  index = this->index;
+    volatile uint8_t iIndex  = this->index;
     do{
-        if(bt1){
-            while(bt1){
-                Tones(bt1);
+        volatile uint32_t pressed=(GPIO_PORTE_DATA_R&0xF);
+        if(pressed!= 0x00){
+            while(GPIO_PORTE_DATA_R&(pressed)){
+                Tones(pressed);
             }
             Tones(0);
             another_delay(DEBOUNCE);
-
-            if(this->queue[iVerify]!=led1){
-                leds|=led1;
+            if(this->queue[iVerify]!=pressed){
+                leds|=pressed;
                 another_delay(1000);
                 this->start_control = 0;
-                You_Lose(*this,1);
+                You_Lose(*this);
+                pressed=(GPIO_PORTE_DATA_R&0xF);
                 break;
-            }
-            else leds&=~led1;
+            }else leds&=~pressed;
             iVerify++;
-         }
-         else if(bt2){
-             while(bt2){
-                 Tones(bt2);
-             }
-             Tones(0);
-             another_delay(DEBOUNCE);
-
-             if(this->queue[iVerify]!=led2){
-                 leds|=led2;
-                 another_delay(1000);
-                 this->start_control = 0;
-                 You_Lose(*this,1);
-                 break;
-             }
-             else leds&=~led2;
-             iVerify++;
-         }
-         else if(bt3){
-             while(bt3){
-                 Tones(bt3);
-             }
-             Tones(0);
-             another_delay(DEBOUNCE);
-
-             if(this->queue[iVerify]!=led3){
-                 leds|=led3;
-                 another_delay(1000);
-                 this->start_control = 0;
-                 You_Lose(*this,1);
-                 break;
-             }
-             else leds&=~led3;
-             iVerify++;
-         }
-         else if(bt4){
-             while(bt4){
-                 Tones(bt4);
-             }
-             Tones(0);
-             another_delay(DEBOUNCE);
-
-             if(this->queue[iVerify]!=led4){
-                 leds|=led4;
-                 another_delay(1000);
-                 this->start_control = 0;
-                 You_Lose(*this,1);
-                 break;
-             }
-             else leds&=~led4;
-             iVerify++;
-         }
-         else leds=0;
-    }while(iVerify != index);
-    iVerify=0;
-    another_delay(200);
+        }else leds=0;
+    }while(iVerify!=iIndex);
+    this->iVerify=0;
 }
-
+uint16_t delayDebug = 0;
+uint8_t levelDebug = 0;
 void execute(GENIUS *this){
     uint8_t index = this->index;
+    uint16_t delay = this->delay;
+    delayDebug = delay;
     this->queue[index] = randomic();
     index++;
-    if(index == 99) index = 0;
-    another_delay(500);
+    levelDebug = this->level;
+    if(index == 20){
+        index = 0;
+        this->level++;
+        if(this->level == 3){
+            this->level = 0;
+            congratulations(this);
+        }
+        this->delay-=150;
+    }
+        
+    another_delay(delay);
     unsigned int count=0;
     for(count=0; count < index; count++){
         leds=this->queue[count];
@@ -204,26 +160,30 @@ void Tones(uint8_t which){
       break;
   }
 }
-void You_Lose(GENIUS this,uint8_t option){
+void You_Lose(GENIUS this){
     uint8_t iCount;
-    if(option==0){
-      for(iCount=0;iCount<10;iCount++){
-          PWM_Tone(9090,4545);
-          another_delay(100);
-          PWM_Tone(4545,2727);
-          another_delay(100);
-        }
-        PWM_Tone(0,0);
-      }else if(option == 1){
-        for (iCount = 0; iCount < this.index; iCount++) {
-            leds|=0x0F;
-            PWM_Tone(9090,4545);
-            another_delay(500);
+    for (iCount = 0; iCount < this.index; iCount++) {
+        leds|=0x0F;
+        PWM_Tone(9090,4545);
+        another_delay(500);
 
-            leds&=~(0x0F);
-            PWM_Tone(4545,2727);
-            another_delay(500);
-        }
-        PWM_Tone(0,0);
-      }
+        leds&=~(0x0F);
+        PWM_Tone(4545,2727);
+        another_delay(500);
+    }
+    PWM_Tone(0,0);
+}
+void congratulations(GENIUS *this){
+    uint8_t iCount;
+    for(iCount=0;iCount<10;iCount++){
+        leds|=0x0F;
+        PWM_Tone(9090,4545);
+        another_delay(100);
+        leds&=~0x0F;
+        PWM_Tone(4545,2727);
+        another_delay(100);
+    }
+    PWM_Tone(0,0);
+    this->level = 0;
+    this->start_control=0;
 }

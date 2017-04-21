@@ -7,13 +7,10 @@ typedef struct{
     uint8_t index;
     uint8_t iVerify;
     uint8_t start_control;
-    //uint8_t debug;
-    //uint8_t led_to_blink;
+    uint8_t level; // 0 a 2
+    uint16_t delay;
+    
 }GENIUS;
-
-//extern unsigned int queue[100]={};
-//extern unsigned int index=0,iVerify=0,start_control=0,debug=0;
-//extern unsigned int led_to_blink=0;
 
 /*************************************************************************
  * setup();
@@ -61,4 +58,6 @@ void execute(GENIUS *this);
 /*Play music tones*/
 void Tones(uint8_t which);
 
-void You_Lose(GENIUS this,uint8_t option);
+void You_Lose(GENIUS this);
+
+void congratulations(GENIUS *this);
